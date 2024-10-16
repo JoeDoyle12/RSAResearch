@@ -1,0 +1,75 @@
+import time
+import sympy
+from matplotlib import pyplot as plt
+from sympy.ntheory.factor_ import totient 
+
+class Private:
+    def __init__(self, e, n):
+        self.phi = int(totient(n))
+        self.d = pow(e, -1, self.phi)
+        self.n = n
+    
+    def decrypt(self, num):
+        return pow(num, self.d, self.n)
+
+class Public:
+    def __init__(self, e, n):
+        self.n = n
+        self.e = e
+    
+    def encrypt(self, num):
+        return pow(int(num), self.e, self.n)
+
+def encrypt(message, pub):
+    encrypted = []
+    
+    start_time = time.time()
+    for m in message:
+        encrypted.append(pub.encrypt(m))
+    end_time = time.time()
+
+    return encrypted, end_time - start_time
+
+def decrypt(message, private):
+    decrypted = []
+
+    start_time = time.time()
+    for m in message:
+        decrypted.append(private.decrypt(m))
+    end_time = time.time()
+
+    return decrypted, end_time - start_time
+
+# Generate RSA keys for different bit lengths
+bit_lengths = [16, 32, 64, 128, 256, 512, 1024, 2048, 3000]  # Example bit lengths to loop over
+encryption_times = []
+decryption_times = []
+
+# Example message (as numbers)
+message = [12345, 67890, 54321, 98765]
+
+for bits in bit_lengths:
+    n = sympy.randprime(2**(bits-1), 2**bits)
+    e = 65537  # Commonly used public exponent
+
+    # Create public and private key objects
+    public_key = Public(e, n)
+    private_key = Private(e, n)
+
+    # Encrypt and measure time
+    encrypted_message, encryption_time = encrypt(message, public_key)
+    encryption_times.append(encryption_time)
+
+    # Decrypt and measure time
+    decrypted_message, decryption_time = decrypt(encrypted_message, private_key)
+    decryption_times.append(decryption_time)
+
+# Plot the results
+plt.plot(bit_lengths, encryption_times, label="Encryption Time", marker='o')
+plt.plot(bit_lengths, decryption_times, label="Decryption Time", marker='o')
+plt.title('RSA Encryption vs Decryption Time for Different Bit Lengths')
+plt.xlabel('Bit Length of Primes')
+plt.ylabel('Time (seconds)')
+plt.legend()
+plt.grid(True)
+plt.show()
