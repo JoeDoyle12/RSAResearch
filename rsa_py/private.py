@@ -4,5 +4,5 @@ class Private:
         self.d = pow(e, -1, self.phi)
         self.n = p * q
     
-    def decrypt():
-        pass
+    def decrypt(self, message):
+        return pow(message, self.d, self.n)
