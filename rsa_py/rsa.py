@@ -1,20 +1,22 @@
-from private import Private
-from public import Public
-import decrypt as dec
-import encrypt as enc
-import os
-from sympy import isPrime
+from rsa_py.private import Private
+from rsa_py.public import Public
+from  rsa_py.decrypt import decrypt as dec
+from rsa_py.encrypt import encrypt as enc
+from sympy import isprime
+import secrets
 
 class RSA:
-    def __init__(self, pe = 65537, ks = 2048):
+    def __init__(self, pe = 65537, ks = 2**2048):
+        secure_rng = secrets.SystemRandom()
+
         self.p = 1  
-        while not isPrime(self.p):
-            self.p = os.urandom(ks // 8)
+        while not isprime(self.p):
+            self.p = secure_rng.randrange(ks // 8, ks)
         
         self.q = 1
         
-        while not isPrime(self.p):
-            self.q = os.urnadom(ks // 8)
+        while not isprime(self.q):
+            self.q = secure_rng.randrange(ks // 8, ks)
             
         self.private = Private(pe, self.p, self.q)
         self.public = Public(pe, self.p, self.q)

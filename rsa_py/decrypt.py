@@ -1,4 +1,4 @@
-def encrypt(message, priv):
+def decrypt(message, priv):
     decrypted = []
     
     for m in message:
