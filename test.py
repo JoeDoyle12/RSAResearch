@@ -6,7 +6,7 @@ from rsa_py.rsa import RSA as HomeRsa
 
 str = ""
 with open('test.txt', 'rb') as f:
-    str = f.read(128)
+    str = f.read()
 tests = 1
 
 rsa_gen, rsa_encrypt, rsa_decrypt = [], [], []
@@ -42,13 +42,13 @@ for i in range(tests):
 
     t = time.time()
     hrsa_gen.append(time.time() - t)
-    print("Starting HRSA")
+
     t = time.time()
     hrsa_encrypted = hrsa.encrypt(str)
     hrsa_encrypt.append(time.time() - t)
 
     t = time.time()
-    hrsa_decrypted = hrsa.decrypt(rsa_encrypted)
+    hrsa_decrypted = hrsa.decrypt(hrsa_encrypted)
     hrsa_decrypt.append(time.time() - t)
 
 

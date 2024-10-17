@@ -7,7 +7,6 @@ class RSA:
             public_exponent=pe,
             key_size=ks,
         )
-        print(self.private_key)
         self.public_key = (self.private_key).public_key()
         
 
