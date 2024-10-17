@@ -6,3 +6,4 @@ class Private:
     
     def decrypt(self, message):
         return pow(message, self.d, self.n)
+    
