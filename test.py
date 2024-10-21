@@ -80,20 +80,41 @@ for i in range(tests):
 def avg(lst):
     return sum(lst) / len(lst) if lst else 0
 
-encryption_types = ['RSA', 'Fernet', 'HomeRSA', 'DES']
+# Separate data for RSA + Fernet and HomeRSA + DES
+rsa_fernet_types = ['RSA', 'Fernet']
+homersa_des_types = ['HomeRSA', 'DES']
 
-fig, axs = plt.subplots(1, 3, figsize=(12, 6))
+# RSA + Fernet
+fig1, axs1 = plt.subplots(1, 3, figsize=(12, 6))
 
-axs[0].bar(encryption_types, [avg(rsa_gen), avg(fernet_gen), avg(hrsa_gen), avg(des_gen)])
-axs[0].set_title('Key Generation Time')
+axs1[0].bar(rsa_fernet_types, [avg(rsa_gen), avg(fernet_gen)])
+axs1[0].set_title('Key Generation Time (RSA + Fernet)')
 
-axs[1].bar(encryption_types, [avg(rsa_encrypt), avg(fernet_encrypt), avg(hrsa_encrypt), avg(des_encrypt)])
-axs[1].set_title('Encryption Time')
+axs1[1].bar(rsa_fernet_types, [avg(rsa_encrypt), avg(fernet_encrypt)])
+axs1[1].set_title('Encryption Time (RSA + Fernet)')
 
-axs[2].bar(encryption_types, [avg(rsa_decrypt), avg(fernet_decrypt), avg(hrsa_decrypt), avg(des_decrypt)])
-axs[2].set_title('Decryption Time')
+axs1[2].bar(rsa_fernet_types, [avg(rsa_decrypt), avg(fernet_decrypt)])
+axs1[2].set_title('Decryption Time (RSA + Fernet)')
 
-for ax in axs:
+for ax in axs1:
+    ax.set_ylabel("Time (seconds)")
+
+plt.tight_layout()
+plt.show()
+
+# HomeRSA + DES
+fig2, axs2 = plt.subplots(1, 3, figsize=(12, 6))
+
+axs2[0].bar(homersa_des_types, [avg(hrsa_gen), avg(des_gen)])
+axs2[0].set_title('Key Generation Time (HomeRSA + DES)')
+
+axs2[1].bar(homersa_des_types, [avg(hrsa_encrypt), avg(des_encrypt)])
+axs2[1].set_title('Encryption Time (HomeRSA + DES)')
+
+axs2[2].bar(homersa_des_types, [avg(hrsa_decrypt), avg(des_decrypt)])
+axs2[2].set_title('Decryption Time (HomeRSA + DES)')
+
+for ax in axs2:
     ax.set_ylabel("Time (seconds)")
 
 plt.tight_layout()
