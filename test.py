@@ -81,20 +81,31 @@ def avg(lst):
     return sum(lst) / len(lst) if lst else 0
 
 # Separate data for RSA + Fernet and HomeRSA + DES
-rsa_fernet_types = ['RSA', 'Fernet']
-homersa_des_types = ['HomeRSA', 'DES']
+rsa_fernet_types = ['RSA', 'Fernet', 'Total']
+homersa_des_types = ['HomeRSA', 'DES', 'Total']
+
+# Calculate total times for each method
+rsa_total = avg(rsa_gen) + avg(rsa_encrypt) + avg(rsa_decrypt)
+fernet_total = avg(fernet_gen) + avg(fernet_encrypt) + avg(fernet_decrypt)
+hrsa_total = avg(hrsa_gen) + avg(hrsa_encrypt) + avg(hrsa_decrypt)
+des_total = avg(des_gen) + avg(des_encrypt) + avg(des_decrypt)
 
 # RSA + Fernet
-fig1, axs1 = plt.subplots(1, 3, figsize=(12, 6))
+fig1, axs1 = plt.subplots(1, 4, figsize=(12, 6))
 
-axs1[0].bar(rsa_fernet_types, [avg(rsa_gen), avg(fernet_gen)])
+# Key Generation, Encryption, Decryption Times
+axs1[0].bar(rsa_fernet_types[:-1], [avg(rsa_gen), avg(fernet_gen)])
 axs1[0].set_title('Key Generation Time (RSA + Fernet)')
 
-axs1[1].bar(rsa_fernet_types, [avg(rsa_encrypt), avg(fernet_encrypt)])
+axs1[1].bar(rsa_fernet_types[:-1], [avg(rsa_encrypt), avg(fernet_encrypt)])
 axs1[1].set_title('Encryption Time (RSA + Fernet)')
 
-axs1[2].bar(rsa_fernet_types, [avg(rsa_decrypt), avg(fernet_decrypt)])
+axs1[2].bar(rsa_fernet_types[:-1], [avg(rsa_decrypt), avg(fernet_decrypt)])
 axs1[2].set_title('Decryption Time (RSA + Fernet)')
+
+# Add total time bar for RSA and Fernet
+axs1[3].bar(['RSA', 'Fernet'], [rsa_total, fernet_total])
+axs1[3].set_title('Total Time (RSA + Fernet)')
 
 for ax in axs1:
     ax.set_ylabel("Time (seconds)")
@@ -103,16 +114,21 @@ plt.tight_layout()
 plt.show()
 
 # HomeRSA + DES
-fig2, axs2 = plt.subplots(1, 3, figsize=(12, 6))
+fig2, axs2 = plt.subplots(1, 4, figsize=(12, 6))
 
-axs2[0].bar(homersa_des_types, [avg(hrsa_gen), avg(des_gen)])
+# Key Generation, Encryption, Decryption Times
+axs2[0].bar(homersa_des_types[:-1], [avg(hrsa_gen), avg(des_gen)])
 axs2[0].set_title('Key Generation Time (HomeRSA + DES)')
 
-axs2[1].bar(homersa_des_types, [avg(hrsa_encrypt), avg(des_encrypt)])
+axs2[1].bar(homersa_des_types[:-1], [avg(hrsa_encrypt), avg(des_encrypt)])
 axs2[1].set_title('Encryption Time (HomeRSA + DES)')
 
-axs2[2].bar(homersa_des_types, [avg(hrsa_decrypt), avg(des_decrypt)])
+axs2[2].bar(homersa_des_types[:-1], [avg(hrsa_decrypt), avg(des_decrypt)])
 axs2[2].set_title('Decryption Time (HomeRSA + DES)')
+
+# Add total time bar for HomeRSA and DES
+axs2[3].bar(['HomeRSA', 'DES'], [hrsa_total, des_total])
+axs2[3].set_title('Total Time (HomeRSA + DES)')
 
 for ax in axs2:
     ax.set_ylabel("Time (seconds)")
