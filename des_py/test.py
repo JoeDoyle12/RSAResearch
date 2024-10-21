@@ -1,4 +1,4 @@
-from des_instance import DES
+from des_py.des_instance import DES
 
 des = DES()
 

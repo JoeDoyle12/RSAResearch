@@ -6,7 +6,7 @@ from sympy import isprime
 import secrets
 
 class RSA:
-    def __init__(self, pe = 65537, ks = 2**2048):
+    def __init__(self, pe = 65537, ks = 2**256):
         secure_rng = secrets.SystemRandom()
 
         self.p = 1  

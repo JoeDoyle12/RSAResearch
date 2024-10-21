@@ -1,4 +1,4 @@
-import des_tables as tabs
+import des_py.des_tables as tabs
 
 def permute(data: int, table: list, bit_length: int) -> int:
     permuted_data = 0

@@ -1,4 +1,4 @@
-import des_boxes as F
+import des_py.des_boxes as F
 import secrets
 
 class DES: 
@@ -27,7 +27,6 @@ class DES:
     def int_to_message(self, message):
         decrypted_bytes = b""
         for n in message:
-            print(n)
             decrypted_bytes += n.to_bytes(8, "big")
         
         return decrypted_bytes
