@@ -1,3 +1,8 @@
+"""
+decrypt.py: Decrypt entire messages
+Author: Joe Doyle
+"""
+
 def decrypt(message, priv):
     decrypted = []
     

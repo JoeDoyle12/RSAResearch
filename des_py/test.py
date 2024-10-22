@@ -1,3 +1,8 @@
+"""
+test.py: Tests our DES class
+Author: Jack Doyle
+"""
+
 from des_py.des_instance import DES
 
 des = DES()

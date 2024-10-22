@@ -1,3 +1,8 @@
+"""
+rsa_py/rsa.py: Define a hommade implementation of RSA
+Authors: Joe Doyle, Jack Doyle
+"""
+
 from rsa_py.private import Private
 from rsa_py.public import Public
 from  rsa_py.decrypt import decrypt as dec

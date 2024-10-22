@@ -1,3 +1,8 @@
+"""
+test.py: Test Speed of RSA, FErnet, DES, and homemade RSA
+Authors: Joe Doyle, Jack Doyle, Aaron Huang
+"""
+
 from cryptography_tests.rsa_instance import RSA
 from cryptography_tests.fernet_instance import Fernet
 import time

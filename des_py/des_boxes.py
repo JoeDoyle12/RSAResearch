@@ -1,3 +1,7 @@
+"""
+des_py/des_boxes.py: Define helper functions for implementation of DES
+Author: Jack Doyle
+"""
 import des_py.des_tables as tabs
 
 def permute(data: int, table: list, bit_length: int) -> int:

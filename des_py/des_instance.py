@@ -1,3 +1,8 @@
+"""
+des_instance.py: Define DES class
+Author: Jack Doyle
+"""
+
 import des_py.des_boxes as F
 import secrets
 

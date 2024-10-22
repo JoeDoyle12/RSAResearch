@@ -1,3 +1,8 @@
+"""
+rsa_instance.py: Defines RSA wrapper class
+Authors: Joe Doyle, Jack Doyle
+"""
+
 from cryptography.hazmat.primitives.asymmetric import (rsa, padding)
 from cryptography.hazmat.primitives import hashes
 

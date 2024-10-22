@@ -1,3 +1,8 @@
+"""
+cryptography_tests/fernet_instance.py: Defines a Fernet wrapper class
+Authors: Joe Doyle, Jack Doyle
+"""
+
 from cryptography.fernet import Fernet as F
 
 class Fernet:

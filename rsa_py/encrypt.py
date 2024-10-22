@@ -1,3 +1,8 @@
+"""
+rsa_py/encrypt.py: Encrypt entire messages
+Author: Joe Doyle
+"""
+
 def encrypt(message, pub):
     encrypted = []
     

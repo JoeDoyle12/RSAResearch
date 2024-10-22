@@ -1,3 +1,8 @@
+"""
+public.py: Define helper Public class to store publicly available variables for RSA implementation
+Author: Joe Doyle
+"""
+
 class Public:
     def __init__(self, e, p, q):
         """

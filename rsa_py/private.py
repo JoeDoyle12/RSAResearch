@@ -1,3 +1,7 @@
+"""
+private.py: Helper class for privately kept variables in RSA implementation
+Author: Joe Doyle
+"""
 class Private:
     def __init__(self, e, p, q):
         self.phi = (p - 1) * (q - 1)
